@@ -136,7 +136,8 @@ def ul_from_lines(line_no, below_no, above_no, buf, char, above=False):
     """ Apply section format `char` above at `buf` `line_no`
     """
     line = buf[line_no]
-    underline = char * len(line)
+    # 修正中文长度的问题
+    underline = char * ((len(line) + len(line.decode('utf-8'))) /2)
     if not below_no is None:
         buf[below_no] = underline
     else:
